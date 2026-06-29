@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-function generateTransactionId() {
+function generateCardId() {
   let files = fs.readdirSync("./data/cards");
 
   let num = files.length + 1001;
@@ -8,4 +8,4 @@ function generateTransactionId() {
   return "CCN" + num;
 }
 
-module.exports = generateTransactionId;
+module.exports = generateCardId;
