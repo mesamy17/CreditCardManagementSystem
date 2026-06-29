@@ -5,6 +5,7 @@ function readFile(fileName) {
     if (!fs.existsSync(fileName)) {
       return null;
     }
+
     let data = fs.readFileSync(fileName, "utf8");
 
     return data;
@@ -14,4 +15,4 @@ function readFile(fileName) {
   }
 }
 
-module.exports = readFile;
+module.exports = { readFile };

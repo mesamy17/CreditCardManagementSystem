@@ -8,4 +8,4 @@ function generateCardId() {
   return "CCN" + num;
 }
 
-module.exports = generateCardId;
+module.exports = {generateCardId};

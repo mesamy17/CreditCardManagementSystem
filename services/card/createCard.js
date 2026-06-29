@@ -1,6 +1,6 @@
 const creditCard = require("../../create/CreditCard.js");
 const idGen = require("../../generators/cardId.js");
-const writeData = require("../../dataSavers/creditCard/writeCardData.js");
+const add = require("../../dataSavers/creditCard/writeCardData.js");
 
 function createCard(cardHolderName, creditLimit, createDate) {
   try {
@@ -8,7 +8,7 @@ function createCard(cardHolderName, creditLimit, createDate) {
 
     let card = new creditCard(cardId, cardHolderName, creditLimit, createDate);
 
-    writeData.writeFile("./data/cards" + cardId + ".json", card);
+    add.writeCard("./data/cards/" + cardId + ".json", card);
 
     console.log("card Created Successfully");
     console.log(card);
@@ -17,4 +17,4 @@ function createCard(cardHolderName, creditLimit, createDate) {
   }
 }
 
-module.exports = createCard;
+module.exports = { createCard };

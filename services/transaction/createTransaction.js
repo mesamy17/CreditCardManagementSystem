@@ -3,10 +3,11 @@ const edit = require("../../dataSavers/creditCard/updateCard.js");
 const transactions = require("../../create/transactions.js");
 const idGen = require("../../generators/transactionId.js");
 const write = require("../../dataSavers/transactions/writeTransaction.js");
+const transaction = require("../../create/transactions.js");
 
 function createTransaction(cardId, merchantName, amount, createDate) {
   try {
-    let card = getCard.readFile(cardId);
+    let card = getCard.readFile("./data/cards/" + cardId + ".json");
 
     let status = "";
     let failReason = "";
@@ -24,18 +25,19 @@ function createTransaction(cardId, merchantName, amount, createDate) {
       edit.updateCard(card);
     }
 
-    let transaction = new transactions(
+    let data = new transaction(
       idGen.generateTransactionId(),
       cardId,
       merchantName,
       amount,
+      createDate,
       status,
-      failureReason,
+      failReason,
     );
 
     write.writeTransaction(
-      "./data/transactions/" + transaction.transactionId + ".json",
-      transaction,
+      "./data/transactions/" + data.transactionId + ".json",
+      data,
     );
 
     console.log("Transaction Saved Successfully");
@@ -44,4 +46,4 @@ function createTransaction(cardId, merchantName, amount, createDate) {
   }
 }
 
-module.exports = createTransaction;
+module.exports = { createTransaction };

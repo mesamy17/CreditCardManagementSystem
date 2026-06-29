@@ -8,4 +8,4 @@ function updateCard(card) {
   }
 }
 
-module.exports = updateCard;
+module.exports = { updateCard };
